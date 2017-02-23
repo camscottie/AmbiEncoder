@@ -141,24 +141,25 @@ void AmbiEncoderAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuf
 
     // Convert pan position in degrees to radians
 	float azimuth = (M_PI / 180.f) * panPosition;
+	float zentith = (M_PI / 180.f) * axisZSlider;
 
 	// Get a pointer to each of the Ambisonic channels
-	float* channelDataW = buffer.getWriterPointer(0);
-	float* channelDataX = buffer.getWriterPointer(1);
-	float* channelDataY = buffer.getWriterPointer(2);
-	float* channelDataZ = buffer.getWriterPointer(3); //Not used in this lab
+	float* channelDataW = buffer.getWritePointer(0);
+	float* channelDataX = buffer.getWritePointer(1);
+	float* channelDataY = buffer.getWritePointer(2);
+	float* channelDataZ = buffer.getWritePointer(3); //Not used in this lab
 
 	//Loop through each sample
 	for (int i = 0; i < numSamples; i++)
 	{
 		// Store input in temp variable
-		float audioin = channelDataW[i];
+		float audioIn = channelDataW[i];
 
 		// Do the encoding (horizontal only)
-		channel[i] = audioIn * 0.707;
-		channelData[i] = audioIn * cos(azimuth);
-		channelData[i] = audioIn * sin(azimuth);
-		channelData[i] = audioIn * sin();
+		channelDataW[i] = audioIn * 0.707;
+		channelDataX[i] = audioIn * cos(azimuth);
+		channelDataY[i] = audioIn * sin(azimuth);
+		channelDataZ[i] = audioIn * sin(axisZSlider);
 
 	}
 }
