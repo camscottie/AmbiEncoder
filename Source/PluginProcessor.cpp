@@ -139,12 +139,28 @@ void AmbiEncoderAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuf
     for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-	float azimuth = /180.f)
+    // Convert pan position in degrees to radians
+	float azimuth = (M_PI / 180.f) * panPosition;
 
-        // ..do something to the data...
-    }
+	// Get a pointer to each of the Ambisonic channels
+	float* channelDataW = buffer.getWriterPointer(0);
+	float* channelDataX = buffer.getWriterPointer(1);
+	float* channelDataY = buffer.getWriterPointer(2);
+	float* channelDataZ = buffer.getWriterPointer(3); //Not used in this lab
+
+	//Loop through each sample
+	for (int i = 0; i < numSamples; i++)
+	{
+		// Store input in temp variable
+		float audioin = channelDataW[i];
+
+		// Do the encoding (horizontal only)
+		channel[i] = audioIn * 0.707;
+		channelData[i] = audioIn * cos(azimuth);
+		channelData[i] = audioIn * sin(azimuth);
+		channelData[i] = audioIn * sin();
+
+	}
 }
 
 //==============================================================================
