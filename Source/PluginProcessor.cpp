@@ -107,7 +107,7 @@ bool AmbiEncoderAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
     // This is the place where you check if the layout is supported.
     // In this template code we only support mono or stereo.
     if (layouts.getMainOutputChannelSet() != AudioChannelSet::mono()
-     && layouts.getMainOutputChannelSet() != AudioChannelSet::stereo())
+     && layouts.getMainOutputChannelSet() != AudioChannelSet::ambisonic())
         return false;
 
     // This checks if the input layout matches the output layout
