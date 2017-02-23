@@ -125,6 +125,10 @@ void AmbiEncoderAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuf
 {
     const int totalNumInputChannels  = getTotalNumInputChannels();
     const int totalNumOutputChannels = getTotalNumOutputChannels();
+	//We are defining a constant variable called numSamples
+	// Which is using a class called buffer
+	//and a fucntion of this class called getNumSamples
+	const int numSamples = buffer.getNumSamples();
 
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -137,9 +141,7 @@ void AmbiEncoderAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuf
 
     // This is the place where you'd normally do the guts of your plugin's
     // audio processing...
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        float* channelData = buffer.getWritePointer (channel);
+	float azimuth = /180.f)
 
         // ..do something to the data...
     }

@@ -11,6 +11,9 @@
 #ifndef PLUGINPROCESSOR_H_INCLUDED
 #define PLUGINPROCESSOR_H_INCLUDED
 
+#define _USE_MATH_DEFINES
+#include <cmath>
+
 #include "../JuceLibraryCode/JuceHeader.h"
 
 
@@ -24,6 +27,7 @@ public:
     AmbiEncoderAudioProcessor();
     ~AmbiEncoderAudioProcessor();
 
+	float panPosition;
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
